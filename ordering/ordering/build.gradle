@@ -41,9 +41,9 @@ dependencies {
     implementation 'org.springframework.kafka:spring-kafka'
 
 //	config서버 사용을 위한 client의존성 추가
-    implementation 'org.springframework.cloud:spring-cloud-starter-config'
-
-    implementation 'org.springframework.cloud:spring-cloud-starter-bus-amqp'
+//    implementation 'org.springframework.cloud:spring-cloud-starter-config'
+//
+//    implementation 'org.springframework.cloud:spring-cloud-starter-bus-amqp'
 
 //	circuit breaker 의존성 추가
     implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
