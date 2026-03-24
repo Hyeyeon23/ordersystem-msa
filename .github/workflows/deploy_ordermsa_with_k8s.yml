@@ -54,7 +54,7 @@ jobs:
           docker build \
           -t $REGISTRY/$REPOSITORY:$IMAGE_TAG \
           -f ./member/member/Dockerfile ./member/member
-          docker push $REGISTRY/$REPOSITORY:$IMAGE_TYG
+          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
       - name: eks kubectl apply
         run: |
           kubectl apply -f ./member/member/k8s/depl_svc.yml
