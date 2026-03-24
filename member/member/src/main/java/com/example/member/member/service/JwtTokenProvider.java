@@ -5,8 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.data.annotation.Reference;
+
 import org.springframework.stereotype.Component;
 
 import javax.crypto.spec.SecretKeySpec;
@@ -14,7 +13,6 @@ import java.security.Key;
 import java.util.Date;
 
 @Component
-@RefreshScope
 public class JwtTokenProvider {
 
     @Value("${jwt.expiration}")
