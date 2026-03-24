@@ -1,5 +1,6 @@
 # 필요프로그램 설치
-FROM openjdk:17-jdk-alpine as stage1
+FROM eclipse-temurin:17-jdk as stage1
+
 # 파일 복사
 WORKDIR /app
 COPY gradle gradle

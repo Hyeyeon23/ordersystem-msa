@@ -1,4 +1,5 @@
-FROM openjdk:17-jdk-alpine as stage1
+FROM eclipse-temurin:17-jdk as stage1
+
 WORKDIR /app
 COPY gradle gradle
 COPY src src
