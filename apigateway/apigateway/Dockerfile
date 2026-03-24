@@ -10,7 +10,7 @@ COPY gradlew .
 RUN chmod +x gradlew
 RUN ./gradlew bootjar
 
-FROM openjdk:17-jdk-alpine
+FROM eclipse-temurin:17-jdk
 WORKDIR /app
 COPY --from=stage1 /app/build/libs/*.jar app.jar
 
