@@ -18,6 +18,7 @@ spec:
           image: 221082171363.dkr.ecr.ap-southeast-2.amazonaws.com/member-service:latest
           ports:
             - containerPort: 8080
+
           resources:
             limits:
               cpu: "1"
@@ -25,23 +26,25 @@ spec:
             requests:
               cpu: "0.5"
               memory: "250Mi"
-      env:
-        - name: DB_HOST
-          valueFrom:
-            secretKeyRef:
-              name: my-app_secrets
-              key: DB_HOST
-        - name: DB_PW
-          valueFrom:
-            secretKeyRef:
-              name: my-app-secrets
-              key: DB_PW
-      readinessProbe:
-        httpGet:
-          path: /health
-          port: 8080
-        initialDelaySeconds: 10
-        periodSeconds: 10
+
+          env:
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: my-app_secrets   # ⚠️ 이거 아래랑 다름
+                  key: DB_HOST
+            - name: DB_PW
+              valueFrom:
+                secretKeyRef:
+                  name: my-app-secrets   # ⚠️ 하이픈 vs 언더스코어 확인 필요
+                  key: DB_PW
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
 ---
 apiVersion: v1
 kind: Service
