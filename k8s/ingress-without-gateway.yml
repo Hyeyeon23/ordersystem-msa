@@ -1,0 +1,41 @@
+# gateway Deployment 띄우지 않고 ingress에서 apiGateway역할할떄..
+# 근데 이 구조면 gateway에서 수행하는 공통 인증 로직 같은거 못하지 안나?
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: order-backend-ingress
+  namespace: dev
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: my-issuer
+    nginx.ingress.kubernetes.io/rewrite-target: /$1 #첫번째 프리픽스 제거
+spec:
+  tls:
+    - hosts:
+        - "server.groundi.net"
+      secretName: server-dev-com-tls
+  rules:
+    - host: server.groundi.net
+      http:
+        paths:
+          - path: /member-service/
+            pathType: Prefix
+            backend:
+              service:
+                name: member-service
+                port:
+                  number: 80
+          - path: /ordering-service/
+            pathType: Prefix
+            backend:
+              service:
+                name: ordering-service
+                port:
+                  number: 80
+          - path: /product-service/
+            pathType: Prefix
+            backend:
+              service:
+                name: ordering-service
+                port:
+                  number: 80
